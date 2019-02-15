@@ -25,8 +25,10 @@ func main() {
 	if err != nil && err != listener.ErrNoListeningTarget {
 		log.Fatal(err)
 	}
+	// http.Server構造体の初期化
 	server := &http.Server{Handler: http.HandlerFunc(handler)}
 
+	// サーバはブロックするので別のgoroutineで実行する
 	go func() {
 		if err := server.Serve(listeners[0]); err != nil {
 			log.Print(err)
@@ -39,7 +41,8 @@ func main() {
 	<-sigCh
 
 	// シグナルを受け取ったらShutdown
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
 		log.Print(err)
 	}
