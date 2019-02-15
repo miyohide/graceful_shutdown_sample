@@ -1,3 +1,6 @@
+// Graceful Shutdownのサンプル
+// https://qiita.com/najeira/items/806cacb9bba96ff06ec4 を参考にした
+
 package main
 
 import (
