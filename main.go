@@ -13,15 +13,17 @@ import (
 	"github.com/lestrrat-go/server-starter/listener"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello, ")
+	w.(http.Flusher).Flush()
+	time.Sleep(time.Millisecond * 100)
+	fmt.Fprint(w, "Go 1.8!\n")
+}
+
 func newHandler() http.Handler {
 	mux := http.NewServeMux()
 	fmt.Println("Starting New Worker")
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello, ")
-		w.(http.Flusher).Flush()
-		time.Sleep(time.Millisecond * 100)
-		fmt.Fprint(w, "Go 1.8!\n")
-	})
+	mux.HandleFunc("/", handler)
 	return mux
 }
 
