@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:ae9d3d846ce86fcd7e0f691d5282743d0de3ce6fc4e21dbb28067f1f1f53cef9"
+  branch = "master"
+  digest = "1:75a383eda1e4e76eb043bb67dcec98ee7d782ccf1fbb52bbc0cf3c5cb9825588"
   name = "github.com/lestrrat-go/server-starter"
   packages = ["listener"]
   pruneopts = "UT"
-  revision = "88699d57aeee0276b4198e135883ff24b88a742f"
-  version = "0.0.2"
+  revision = "8564cc80d990ee80619b86b17946ceac65a4977d"
 
 [solve-meta]
   analyzer-name = "dep"
