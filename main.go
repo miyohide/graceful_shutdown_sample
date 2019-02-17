@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/gomodule/redigo/redis"
 	"github.com/lestrrat-go/server-starter/listener"
 )
 
@@ -22,9 +23,27 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func newHandler() http.Handler {
 	mux := http.NewServeMux()
-	fmt.Println("Starting New Worker")
+	conf, err := config()
+	if err != nil {
+		log.Fatalln("Raise error when get data from redis")
+	}
+	fmt.Printf("Starting new Serve. config val = %v\n", conf)
 	mux.HandleFunc("/", handler)
 	return mux
+}
+
+func config() (result string, err error) {
+	c, err := redis.Dial("tcp", ":6379")
+	if err != nil {
+		return "", err
+	}
+	defer c.Close()
+
+	result, err = redis.String(c.Do("GET", "CONFIG"))
+	if err != nil {
+		return "", err
+	}
+	return result, err
 }
 
 func main() {

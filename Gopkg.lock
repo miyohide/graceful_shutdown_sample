@@ -2,6 +2,17 @@
 
 
 [[projects]]
+  digest = "1:38ec74012390146c45af1f92d46e5382b50531247929ff3a685d2b2be65155ac"
+  name = "github.com/gomodule/redigo"
+  packages = [
+    "internal",
+    "redis",
+  ]
+  pruneopts = "UT"
+  revision = "9c11da706d9b7902c6da69c592f75637793fe121"
+  version = "v2.0.0"
+
+[[projects]]
   branch = "master"
   digest = "1:75a383eda1e4e76eb043bb67dcec98ee7d782ccf1fbb52bbc0cf3c5cb9825588"
   name = "github.com/lestrrat-go/server-starter"
@@ -12,6 +23,9 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/lestrrat-go/server-starter/listener"]
+  input-imports = [
+    "github.com/gomodule/redigo/redis",
+    "github.com/lestrrat-go/server-starter/listener",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
