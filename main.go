@@ -15,10 +15,8 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, ")
+	fmt.Fprint(w, "Hello, Graceful Shutdown Sample")
 	w.(http.Flusher).Flush()
-	time.Sleep(time.Millisecond * 100)
-	fmt.Fprint(w, "Go 1.8!\n")
 }
 
 func newHandler() http.Handler {
