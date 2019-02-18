@@ -14,7 +14,7 @@ import (
 	"github.com/lestrrat-go/server-starter/listener"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func allPathHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello, Graceful Shutdown Sample")
 	w.(http.Flusher).Flush()
 }
@@ -26,7 +26,7 @@ func newHandler() http.Handler {
 		log.Fatalln("Raise error when get data from redis")
 	}
 	fmt.Printf("Starting new Serve. config val = %v\n", conf)
-	mux.HandleFunc("/", handler)
+	mux.HandleFunc("/", allPathHandler)
 	return mux
 }
 
