@@ -19,7 +19,7 @@ func allPathHandler(w http.ResponseWriter, r *http.Request) {
 	w.(http.Flusher).Flush()
 }
 
-func newHandler() http.Handler {
+func newServer() http.Handler {
 	mux := http.NewServeMux()
 	conf, err := config()
 	if err != nil {
@@ -50,7 +50,7 @@ func main() {
 		log.Fatal(err)
 	}
 	// http.Server構造体の初期化
-	server := &http.Server{Handler: newHandler()}
+	server := &http.Server{Handler: newServer()}
 
 	// サーバはブロックするので別のgoroutineで実行する
 	go func() {
